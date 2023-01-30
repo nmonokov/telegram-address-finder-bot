@@ -13,7 +13,7 @@ const BOT_TOKEN: string = process.env.BOT_TOKEN || '';
 const THRESHOLD: number = Number(process.env.PROXIMITY_THRESHOLD || 500); // threshold in meters
 const GOOGLE_MAPS_TOKEN: string = process.env.GOOGLE_MAPS_TOKEN || '';
 
-const bot = new TelegramBot(BOT_TOKEN);
+const bot = new TelegramBot(BOT_TOKEN, { polling: { autoStart: true } });
 const start: StartCommand = new StartCommand(bot);
 const register: RegisterCommand = new RegisterCommand(bot, THRESHOLD, GOOGLE_MAPS_TOKEN);
 const registerByLocation: RegisterByLocationCommand = new RegisterByLocationCommand(bot, THRESHOLD, GOOGLE_MAPS_TOKEN);
