@@ -4,7 +4,8 @@ import { logger } from './utils/logger';
 
 /**
  * Express server to host the bot with web hooks.
- * POST /bot - is a web hook which receives data from the telegram bot and reroutes it to the bot commands.
+ * POST /bot{token} - is a web hook which receives data from the telegram bot and reroutes it to the bot commands.
+ *                    In order to secure public endpoint the bot token was added.
  * GET /health - is a simple health check
  */
 export class WebHookServer {

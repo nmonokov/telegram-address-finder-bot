@@ -1,6 +1,6 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 import { Coordinates } from '../models';
-import { registerUser } from '../user/users';
+import { registerUserData } from '../user/users';
 import { ParentCommand } from './parentCommand';
 
 /**
@@ -31,7 +31,7 @@ export class RegisterByLocationCommand extends ParentCommand {
       lat: location?.latitude,
       lng: location?.longitude,
     };
-    registerUser(username, currentCoordinates, this.defaultThreshold);
+    registerUserData(username, currentCoordinates, this.defaultThreshold);
     this.bot.sendMessage(chatId, 'Address registration complete.');
   }
 }

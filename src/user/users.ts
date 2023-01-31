@@ -1,10 +1,10 @@
-import { Coordinates, RegisteredUser } from '../models';
-import { persistUser, readUserFile } from './file';
+import { Coordinates, UserData } from '../models';
+import { overrideUserFile, persistUser, readUserFile } from './file';
 
 /**
- * Upload users into the map from the file on the application start up.
+ * Upload user data into the map from the file on the application start up.
  */
-const users: { [username: string]: RegisteredUser } = {};
+const users: { [username: string]: UserData } = {};
 readUserFile().forEach((data: string[]) => {
   const [username, lat, lng, threshold, city] = data;
   users[username] = {
@@ -18,17 +18,17 @@ readUserFile().forEach((data: string[]) => {
 });
 
 /**
- * Registers user in the map, so we can access he's properties necessary for the address finding.
+ * Registers user data in the map, so we can access he's properties necessary for the address finding.
  *
  * @param username contained in the user's message input
  * @param city where address is located
  * @param threshold proximity threshold in meters to define whether selected address is near or not
  * @param coordinates of the address to register
  */
-export const registerUser = (username: string,
-                             coordinates: Coordinates,
-                             threshold: number,
-                             city?: string): void => {
+export const registerUserData = (username: string,
+                                 coordinates: Coordinates,
+                                 threshold: number,
+                                 city?: string): void => {
   const registeredUser = {
     city,
     coordinates,
@@ -39,11 +39,11 @@ export const registerUser = (username: string,
 };
 
 /**
- * Retrieves user metadata.
+ * Retrieves user data.
  *
  * @param username contained in the user's message input
  */
-export const getUser = (username: string): RegisteredUser => users[username];
+export const getUserData = (username: string): UserData => users[username];
 
 /**
  * Updates proximity threshold where 'Close address' is defined. Value in meters.
@@ -58,3 +58,17 @@ export const updateThreshold = (username: string, threshold: number): void => {
     persistUser(username, user);
   }
 };
+
+/**
+ * Removing the user data from the map and then overriding the whole file with user data.
+ *
+ * @param username
+ */
+export const removeUserData = (username: string): boolean => {
+  const user: UserData = users[username];
+  if (user) {
+    delete users[username];
+    return overrideUserFile(users);
+  }
+  return false;
+}

@@ -1,7 +1,7 @@
 import { ParentCommand } from './parentCommand';
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 import { logger } from '../utils/logger';
-import { getUser } from '../user/users';
+import { getUserData } from '../user/users';
 import { CoordinateResponse, Coordinates } from '../models';
 import { getCoordinateData } from '../utils/coordinates';
 import { isNear } from '../utils/distance';
@@ -29,7 +29,7 @@ export class AddressMessageCommand extends ParentCommand {
     if (text.startsWith('/')) {
       return;
     }
-    const enrichedText = `${getUser(message.from?.username || '')?.city || ''} ${text}`;
+    const enrichedText = `${getUserData(message.from?.username || '')?.city || ''} ${text}`;
     logger.debug({message: 'Enriched text value for an address search.', enrichedText});
     const coordinateData: CoordinateResponse = await getCoordinateData(enrichedText, this.googleMapsToken);
     this.defineLocation(message, coordinateData);
@@ -53,7 +53,7 @@ export class AddressMessageCommand extends ParentCommand {
                          coordinatesToCompare: Coordinates,
                          formattedAddress: string): void {
     const username = message.from?.username || '';
-    const user = getUser(username);
+    const user = getUserData(username);
     if (!user) {
       logger.debug({message: 'User\'s location is absent. Skipping the alert.'});
       return;

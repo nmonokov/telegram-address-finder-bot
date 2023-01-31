@@ -1,6 +1,6 @@
 import { ParentCommand } from './parentCommand';
 import TelegramBot from 'node-telegram-bot-api';
-import { getUser } from '../user/users';
+import { getUserData } from '../user/users';
 
 /**
  * /user - returns user data alongside with user location pinned on a map.
@@ -17,9 +17,9 @@ export class UserDataCommand extends ParentCommand {
       this.bot.sendMessage(chatId, 'Can\'t find the user.');
       return;
     }
-    const user = getUser(username);
+    const user = getUserData(username);
     if (!user) {
-      this.bot.sendMessage(chatId, `User ${username} not found. Probably not registered.`);
+      this.bot.sendMessage(chatId, `${username}'s data not found. Probably not registered.`);
       return;
     }
     this.bot.sendMessage(chatId, `

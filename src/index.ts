@@ -3,11 +3,12 @@ import TelegramBot, { Message } from 'node-telegram-bot-api';
 import { StartCommand } from './commands/start';
 import { RegisterCommand } from './commands/register';
 import { ThresholdCommand } from './commands/threshold';
-import { UserDataCommand } from './commands/userData';
+import { UserDataCommand } from './commands/user';
 import { RegisterByLocationCommand } from './commands/registerByLocation';
 import { AddressMessageCommand } from './commands/addressMessage';
 import { WebHookServer } from './express';
 import { property } from './utils/property';
+import { RemoveCommand } from './commands/remove';
 
 dotenv.config();
 const BOT_TOKEN: string = property('BOT_TOKEN');
@@ -30,9 +31,10 @@ WebHookServer.Builder
 const start: StartCommand = new StartCommand(bot);
 const register: RegisterCommand = new RegisterCommand(bot, THRESHOLD, GOOGLE_MAPS_TOKEN);
 const registerByLocation: RegisterByLocationCommand = new RegisterByLocationCommand(bot, THRESHOLD, GOOGLE_MAPS_TOKEN);
-const addressMessage: AddressMessageCommand = new AddressMessageCommand(bot, GOOGLE_MAPS_TOKEN);
 const threshold: ThresholdCommand = new ThresholdCommand(bot);
 const userData: UserDataCommand = new UserDataCommand(bot);
+const remove: RemoveCommand = new RemoveCommand(bot);
+const addressMessage: AddressMessageCommand = new AddressMessageCommand(bot, GOOGLE_MAPS_TOKEN);
 
 bot.onText(/\/start/, async (message: Message) => {
   start.execute(message);
@@ -52,6 +54,10 @@ bot.onText(/\/threshold (.+)/, async (message: Message, match: RegExpExecArray |
 
 bot.onText(/\/user/, (message: Message) => {
   userData.execute(message);
+});
+
+bot.onText(/\/remove/, (message: Message) => {
+  remove.execute(message);
 });
 
 bot.on('message', async (message: Message) => {

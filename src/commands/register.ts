@@ -1,7 +1,7 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 import { Component, CoordinateResponse } from '../models';
 import { getCoordinateData } from '../utils/coordinates';
-import { registerUser } from '../user/users';
+import { registerUserData } from '../user/users';
 import { ParentCommand } from './parentCommand';
 
 /**
@@ -39,17 +39,17 @@ export class RegisterCommand extends ParentCommand {
     }
     const addressResult = coordinateData.results[0];
     const currentCoordinates = addressResult.geometry.location;
-    const city = this.findCity(addressResult.address_components);
+    const city = RegisterCommand.findCity(addressResult.address_components);
     if (!city) {
       this.bot.sendMessage(chatId, 'Can\'t find the city. The ongoing requests won\'t be precise');
     }
 
-    registerUser(username, currentCoordinates, this.defaultThreshold, city);
+    registerUserData(username, currentCoordinates, this.defaultThreshold, city);
     this.bot.sendMessage(chatId, 'Address registration complete.');
     this.bot.sendLocation(chatId, currentCoordinates.lat, currentCoordinates.lng);
   }
 
-  private findCity(addressComponents: Component[]): string | undefined {
+  private static findCity(addressComponents: Component[]): string | undefined {
     const cityObject = addressComponents.find((component: Component) => component.types.includes('locality'));
     if (!cityObject) {
       return undefined;

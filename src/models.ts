@@ -33,7 +33,7 @@ export interface Coordinates {
     lng: number;
 }
 
-export interface RegisteredUser {
+export interface UserData {
     city?: string;
     coordinates: Coordinates;
     proximityThreshold: number;

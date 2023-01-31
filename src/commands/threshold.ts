@@ -1,5 +1,5 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
-import { getUser, updateThreshold } from '../user/users';
+import { getUserData, updateThreshold } from '../user/users';
 import { ParentCommand } from './parentCommand';
 
 /**
@@ -22,15 +22,15 @@ export class ThresholdCommand extends ParentCommand {
       return;
     }
     const newThreshold = match[1];
-    if (!this.isNumber(newThreshold)) {
+    if (!ThresholdCommand.isNumber(newThreshold)) {
       this.bot.sendMessage(chatId, 'Threshold value is not an integer.');
       return;
     }
     updateThreshold(username, Number(newThreshold));
-    this.bot.sendMessage(chatId, `Threshold value is updated to a new value: ${getUser(username).proximityThreshold}.`);
+    this.bot.sendMessage(chatId, `Threshold value is updated to a new value: ${getUserData(username).proximityThreshold}.`);
   }
 
-  private isNumber(value: string): boolean {
+  private static isNumber(value: string): boolean {
     return !isNaN(parseFloat(value)) && isFinite(parseFloat(value));
   }
 }
