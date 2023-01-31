@@ -18,6 +18,10 @@ export class UserDataCommand extends ParentCommand {
       return;
     }
     const user = getUser(username);
+    if (!user) {
+      this.bot.sendMessage(chatId, `User @{username} not found. Probably not registered.`);
+      return;
+    }
     this.bot.sendMessage(chatId, `
 <b>User Data</b>
 city: <code>${user.city}</code>

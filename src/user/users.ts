@@ -55,6 +55,6 @@ export const updateThreshold = (username: string, threshold: number): void => {
   const user = users[username];
   if (user && threshold > 0) {
     user.proximityThreshold = threshold;
+    persistUser(username, user);
   }
-  persistUser(username, user);
 };
