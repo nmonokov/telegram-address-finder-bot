@@ -8,7 +8,7 @@ const users: { [username: string]: RegisteredUser } = {};
 readUserFile().forEach((data: string[]) => {
   const [username, lat, lng, threshold, city] = data;
   users[username] = {
-    city,
+    city: city || 'Not Provided',
     coordinates: {
       lat: Number(lat),
       lng: Number(lng),
