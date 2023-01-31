@@ -10,7 +10,7 @@ export class RemoveCommand extends ParentCommand {
     super(bot);
   }
 
-  execute(message: TelegramBot.Message) {
+  execute(message: TelegramBot.Message): void {
     const chatId = message.chat.id;
     const username = message.from?.username;
     if (!username) {

@@ -24,7 +24,7 @@ export class WebHookServer {
     this.app.use(express.json());
   }
 
-  start() {
+  start(): void {
     this.registerEndpoints();
     this.registerWebHook();
     this.app.listen(this.port, async () => {
@@ -32,7 +32,7 @@ export class WebHookServer {
     });
   }
 
-  private registerEndpoints() {
+  private registerEndpoints(): void {
     this.app.post(`/bot${this.token}`, (request, response) => {
       this.bot.processUpdate(request.body);
       response.sendStatus(200);
@@ -42,7 +42,7 @@ export class WebHookServer {
     })
   }
 
-  private registerWebHook() {
+  private registerWebHook(): void {
     const telegramApiUrl = `https://api.telegram.org/bot${this.token}`
     const webHookUrl = `${telegramApiUrl}/setWebhook?url=${this.url}/bot${this.token}&drop_pending_updates=false`
     this.bot.setWebHook(webHookUrl);

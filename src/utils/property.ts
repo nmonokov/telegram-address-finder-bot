@@ -5,7 +5,7 @@
  * @param name environment variable name
  * @param defaultValue optional
  */
-export const property = (name: string, defaultValue?: any) => {
+export const property = (name: string, defaultValue?: any): any => {
   const environmentVariable = process.env[name];
   if (!environmentVariable && !defaultValue) {
     throw Error(`Environment variable ${name} is not set.`)

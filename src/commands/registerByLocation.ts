@@ -15,7 +15,7 @@ export class RegisterByLocationCommand extends ParentCommand {
     this.googleMapsToken = googleMapsToken;
   }
 
-  execute(message: Message) {
+  execute(message: Message): void {
     const chatId = message.chat.id;
     const username = message.from?.username;
     if (!username) {

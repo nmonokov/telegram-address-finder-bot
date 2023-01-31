@@ -9,7 +9,7 @@ export class StartCommand extends ParentCommand {
     super(bot);
   }
 
-  execute(message: Message) {
+  execute(message: Message): void {
     this.bot.sendMessage(message.chat.id, `
 Hello, ${message.from?.first_name || 'user'}!
 This bot helps you find the address on the map.

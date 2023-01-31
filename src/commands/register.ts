@@ -16,7 +16,7 @@ export class RegisterCommand extends ParentCommand {
     this.googleMapsToken = googleMapsToken;
   }
 
-  async execute(message: Message, match: RegExpExecArray | null) {
+  async execute(message: Message, match: RegExpExecArray | null): Promise<void> {
     const chatId = message.chat.id;
     if (!match) {
       this.bot.sendMessage(chatId, 'Please provide your address.');

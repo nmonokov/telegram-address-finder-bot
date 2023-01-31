@@ -60,10 +60,12 @@ export const persistUser = (username: string, user: UserData): void => {
  * @param users all users in memory
  */
 export const overrideUserFile = (users: { [username: string]: UserData }): boolean => {
-  const fileLines: string[] = Object.keys(users).map((username: string) => {
-    const user: UserData = users[username];
-    return mapUser(username, user);
-  })
+  const fileLines: string[] = Object.keys(users)
+    .filter((username: string) => username)
+    .map((username: string) => {
+      const user: UserData = users[username];
+      return mapUser(username, user);
+    });
   const file: string = fileLines.join('\n');
   try {
     fs.writeFileSync(usersFilePath, file);

@@ -1,9 +1,9 @@
 import winston, { format } from 'winston';
 import dotenv from 'dotenv';
-import process from 'process';
+import { property } from './property';
 
 dotenv.config();
-const LOG_LEVEL: string = process.env.LOG_LEVEL || 'info';
+const LOG_LEVEL: string = property('LOG_LEVEL', 'info');
 
 /**
  * Instantiating logging with level selected from the env variables.

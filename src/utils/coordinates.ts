@@ -22,7 +22,7 @@ export const getCoordinateData = async (text: string, googleMapToken: string): P
   return coordinateData;
 };
 
-const createUrl = (text: string, googleMapToken: string) => {
+const createUrl = (text: string, googleMapToken: string): string => {
   const formattedAddress = text.trim()
     .replace(/\s+/g, '+')
     .replace(/\d\d:\d\d\s*/, '')

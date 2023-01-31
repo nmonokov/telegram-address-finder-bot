@@ -10,7 +10,7 @@ export class ThresholdCommand extends ParentCommand {
     super(bot);
   }
 
-  execute(message: Message, match: RegExpExecArray | null) {
+  execute(message: Message, match: RegExpExecArray | null): void {
     const chatId = message.chat.id;
     if (!match) {
       this.bot.sendMessage(chatId, 'Please provide your threshold.');

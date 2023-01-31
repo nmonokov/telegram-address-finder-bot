@@ -10,7 +10,7 @@ import { Coordinates } from '../models';
  */
 export const isNear = (currentCoordinates: Coordinates,
                        coordinatesToCompare: Coordinates,
-                       threshold: number) => {
+                       threshold: number): boolean => {
   const toRadians = (degree: number) => degree * Math.PI / 180;
   const earthRadius = 6371e3; // Earth's radius in meters
 
