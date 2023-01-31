@@ -21,7 +21,7 @@ export class AddressMessageCommand extends ParentCommand {
   }
 
   async execute(message: TelegramBot.Message): Promise<void> {
-    const text: string | undefined = message.photo ? message.caption : message.text;
+    const text: string | undefined = message.photo || message.video ? message.caption : message.text;
     if (!text) {
       logger.debug({message: 'Text is empty, skipping this message.'});
       return;

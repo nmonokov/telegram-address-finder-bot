@@ -23,11 +23,12 @@ export class ThresholdCommand extends ParentCommand {
     }
     const newThreshold = match[1];
     if (!ThresholdCommand.isNumber(newThreshold)) {
-      this.bot.sendMessage(chatId, 'Threshold value is not an integer.');
+      this.bot.sendMessage(chatId, 'Threshold value is not a number.');
       return;
     }
     updateThreshold(username, Number(newThreshold));
-    this.bot.sendMessage(chatId, `Threshold value is updated to a new value: ${getUserData(username).proximityThreshold}.`);
+    this.bot.sendMessage(chatId,
+      `Threshold value is updated to a new value: ${getUserData(username).proximityThreshold}.`);
   }
 
   private static isNumber(value: string): boolean {
