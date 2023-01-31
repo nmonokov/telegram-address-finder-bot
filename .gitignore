@@ -19,5 +19,6 @@ coverage/
 
 # Other files
 .DS_Store
+.env
 logs/
 users/

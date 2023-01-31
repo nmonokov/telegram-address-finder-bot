@@ -27,4 +27,3 @@ export const isNear = (currentCoordinates: Coordinates,
 
   return distance < threshold;
 };
-

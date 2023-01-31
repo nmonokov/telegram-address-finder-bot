@@ -1,6 +1,5 @@
 import TelegramBot, { Message } from 'node-telegram-bot-api';
-import { Component, CoordinateResponse, Coordinates } from '../models';
-import { getCoordinateData } from '../utils/coordinates';
+import { Coordinates } from '../models';
 import { registerUser } from '../user/users';
 import { ParentCommand } from './parentCommand';
 

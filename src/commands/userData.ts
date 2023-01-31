@@ -20,7 +20,7 @@ export class UserDataCommand extends ParentCommand {
     const user = getUser(username);
     this.bot.sendMessage(chatId, `
 <b>User Data</b>
-city: <code>${user.city === 'undefined' ? 'Not Selected' : user.city}</code>
+city: <code>${user.city === 'undefined' || !user.city ? 'Not Selected' : user.city}</code>
 threshold: <code>${user.proximityThreshold} meters</code>`,
       {
       parse_mode: 'HTML',
