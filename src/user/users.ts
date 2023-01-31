@@ -5,17 +5,17 @@ import { persistUser, readUserFile } from './file';
  * Upload users into the map from the file on the application start up.
  */
 const users: { [username: string]: RegisteredUser } = {};
-readUserFile().forEach((data: string[]) => {
-  const [username, lat, lng, threshold, city] = data;
-  users[username] = {
-    city: city || 'Not Provided',
-    coordinates: {
-      lat: Number(lat),
-      lng: Number(lng),
-    },
-    proximityThreshold: Number(threshold),
-  };
-});
+// readUserFile().forEach((data: string[]) => {
+//   const [username, lat, lng, threshold, city] = data;
+//   users[username] = {
+//     city: city || 'Not Provided',
+//     coordinates: {
+//       lat: Number(lat),
+//       lng: Number(lng),
+//     },
+//     proximityThreshold: Number(threshold),
+//   };
+// });
 
 /**
  * Registers user in the map, so we can access he's properties necessary for the address finding.
