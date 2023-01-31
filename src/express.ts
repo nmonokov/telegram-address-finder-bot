@@ -44,7 +44,7 @@ export class WebHookServer {
 
   private registerWebHook() {
     const telegramApiUrl = `https://api.telegram.org/bot${this.token}`
-    const webHookUrl = `${telegramApiUrl}/setWebhook?url=${this.url}/bot${this.token}&drop_pending_updates=true`
+    const webHookUrl = `${telegramApiUrl}/setWebhook?url=${this.url}/bot${this.token}&drop_pending_updates=false`
     this.bot.setWebHook(webHookUrl);
   }
 
