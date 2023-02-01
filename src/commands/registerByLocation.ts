@@ -9,6 +9,7 @@ import { ParentCommand } from './parentCommand';
 export class RegisterByLocationCommand extends ParentCommand {
   readonly defaultThreshold;
   readonly googleMapsToken;
+
   constructor(bot: TelegramBot, threshold: number, googleMapsToken: string) {
     super(bot);
     this.defaultThreshold = threshold;

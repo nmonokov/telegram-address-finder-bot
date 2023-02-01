@@ -22,3 +22,6 @@ coverage/
 .env
 logs/
 users/
+
+# Exclude
+!jest.config.js

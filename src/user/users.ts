@@ -43,7 +43,7 @@ export const registerUserData = (username: string,
  *
  * @param username contained in the user's message input
  */
-export const getUserData = (username: string): UserData => users[username];
+export const getUserData = (username: string): UserData | undefined => users[username];
 
 /**
  * Updates proximity threshold where 'Close address' is defined. Value in meters.
@@ -52,7 +52,7 @@ export const getUserData = (username: string): UserData => users[username];
  * @param threshold in meters. Cannot be 0 or below.
  */
 export const updateThreshold = (username: string, threshold: number): void => {
-  const user = users[username];
+  const user: UserData | undefined = getUserData(username);
   if (user && threshold > 0) {
     user.proximityThreshold = threshold;
     persistUser(username, user);
@@ -65,7 +65,7 @@ export const updateThreshold = (username: string, threshold: number): void => {
  * @param username
  */
 export const removeUserData = (username: string): boolean => {
-  const user: UserData = users[username];
+  const user: UserData | undefined = getUserData(username);
   if (user) {
     delete users[username];
     return overrideUserFile(users);

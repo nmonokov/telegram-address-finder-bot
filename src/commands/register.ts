@@ -10,6 +10,7 @@ import { ParentCommand } from './parentCommand';
 export class RegisterCommand extends ParentCommand {
   readonly defaultThreshold;
   readonly googleMapsToken;
+
   constructor(bot: TelegramBot, threshold: number, googleMapsToken: string) {
     super(bot);
     this.defaultThreshold = threshold;
@@ -41,7 +42,7 @@ export class RegisterCommand extends ParentCommand {
     const currentCoordinates = addressResult.geometry.location;
     const city = RegisterCommand.findCity(addressResult.address_components);
     if (!city) {
-      this.bot.sendMessage(chatId, 'Can\'t find the city. The ongoing requests won\'t be precise');
+      this.bot.sendMessage(chatId, 'Can\'t find the city. The ongoing requests won\'t be precise.');
     }
 
     registerUserData(username, currentCoordinates, this.defaultThreshold, city);

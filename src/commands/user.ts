@@ -22,10 +22,9 @@ export class UserDataCommand extends ParentCommand {
       this.bot.sendMessage(chatId, `${username}'s data not found. Probably not registered.`);
       return;
     }
-    this.bot.sendMessage(chatId, `
-<b>User Data</b>
-city: <code>${user.city}</code>
-threshold: <code>${user.proximityThreshold} meters</code>`,
+    this.bot.sendMessage(chatId, '<b>User Data</b>\n' +
+      `city: <code>${user.city}</code>\n` +
+      `threshold: <code>${user.proximityThreshold} meters</code>\n`,
       {
       parse_mode: 'HTML',
       });

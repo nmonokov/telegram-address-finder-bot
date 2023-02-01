@@ -28,7 +28,7 @@ export class ThresholdCommand extends ParentCommand {
     }
     updateThreshold(username, Number(newThreshold));
     this.bot.sendMessage(chatId,
-      `Threshold value is updated to a new value: ${getUserData(username).proximityThreshold}.`);
+      `Threshold value is updated to a new value: ${getUserData(username)?.proximityThreshold}.`);
   }
 
   private static isNumber(value: string): boolean {
