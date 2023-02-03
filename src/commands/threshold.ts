@@ -12,13 +12,13 @@ export class ThresholdCommand extends ParentCommand {
 
   execute(message: Message, match: RegExpExecArray | null): void {
     const chatId = message.chat.id;
-    if (!match) {
-      this.bot.sendMessage(chatId, 'Please provide your threshold.');
-      return;
-    }
     const username = message.from?.username;
     if (!username) {
       this.bot.sendMessage(chatId, 'Can\'t find the user. It is possible you\'re not registered.');
+      return;
+    }
+    if (!match) {
+      this.bot.sendMessage(chatId, 'Please provide your threshold.');
       return;
     }
     const newThreshold = match[1];
