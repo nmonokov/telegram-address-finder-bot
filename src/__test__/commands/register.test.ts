@@ -23,7 +23,7 @@ describe('register command test', () => {
     const match: RegExpExecArray = ['/register', '400 EDWARDS LN VANCOUVER'] as unknown as RegExpExecArray;
     const coordinateData = coordinateResponseWithCity();
     const location = coordinateData.results[0].geometry.location;
-    coordinatesStub.resolves(coordinateData)
+    coordinatesStub.resolves(coordinateData);
     persistUserStub.resolves();
 
     await new RegisterCommand(instance(botMock), defaultThreshold, 'token').execute(message, match);
@@ -39,7 +39,7 @@ describe('register command test', () => {
     const match: RegExpExecArray = ['/register', '400 EDWARDS LN VANCOUVER'] as unknown as RegExpExecArray;
     const coordinateData = coordinateResponse();
     const location = coordinateData.results[0].geometry.location;
-    coordinatesStub.resolves(coordinateData)
+    coordinatesStub.resolves(coordinateData);
     persistUserStub.resolves();
 
     await new RegisterCommand(instance(botMock), defaultThreshold, 'token').execute(message, match);
@@ -55,7 +55,7 @@ describe('register command test', () => {
     const message: Message = getMessage(username);
     const match: RegExpExecArray = ['/register', '400 EDWARDS LN VANCOUVER'] as unknown as RegExpExecArray;
     const coordinateData = coordinateResponse('ZERO_RESULTS');
-    coordinatesStub.resolves(coordinateData)
+    coordinatesStub.resolves(coordinateData);
 
     await new RegisterCommand(instance(botMock), defaultThreshold, 'token').execute(message, match);
 

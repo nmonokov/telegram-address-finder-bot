@@ -24,8 +24,8 @@ describe('address message command test', () => {
       city: 'Vancouver',
       coordinates: { lat: 150, lng: 100 },
       proximityThreshold: 100,
-    }
-    getDataStub.returns(userData)
+    };
+    getDataStub.returns(userData);
     const coordinateData = coordinateResponseWithCity();
     const location = coordinateData.results[0].geometry.location;
     const formattedAddress = coordinateData.results[0].formatted_address;
@@ -45,8 +45,8 @@ describe('address message command test', () => {
       city: 'Vancouver',
       coordinates: { lat: 0, lng: 0 },
       proximityThreshold: 100,
-    }
-    getDataStub.returns(userData)
+    };
+    getDataStub.returns(userData);
     const coordinateData = coordinateResponseWithCity();
     const location = coordinateData.results[0].geometry.location;
     const formattedAddress = coordinateData.results[0].formatted_address;
@@ -62,7 +62,7 @@ describe('address message command test', () => {
   test('addressMessage::successful address found without user location', async () => {
     const username = 'test_user';
     const message: Message = getMessage(username, undefined, '400 EDWARDS LN VANCOUVER');
-    getDataStub.returns(undefined)
+    getDataStub.returns(undefined);
     const coordinateData = coordinateResponseWithCity();
     const location = coordinateData.results[0].geometry.location;
     const formattedAddress = coordinateData.results[0].formatted_address;
@@ -78,7 +78,7 @@ describe('address message command test', () => {
   test('addressMessage::fail google map zero results', async () => {
     const username = 'test_user';
     const message: Message = getMessage(username, undefined, '400 EDWARDS LN VANCOUVER');
-    getDataStub.returns(undefined)
+    getDataStub.returns(undefined);
     const coordinateData = coordinateResponse('ZERO_RESULTS');
     const location = coordinateData.results[0].geometry.location;
     const formattedAddress = coordinateData.results[0].formatted_address;

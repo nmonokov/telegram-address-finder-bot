@@ -13,7 +13,7 @@ describe('user command test', () => {
   afterEach(() => {
     sinon.reset();
     reset(mockBot);
-  })
+  });
 
   test('user::successful data send', () => {
     const expectedUserData: UserData = {
@@ -23,7 +23,7 @@ describe('user command test', () => {
     };
     getDataStub.returns(expectedUserData);
     const username: string = 'test_username';
-    const message: Message = getMessage(username)
+    const message: Message = getMessage(username);
 
     new UserDataCommand(instance(mockBot)).execute(message);
 
@@ -37,7 +37,7 @@ describe('user command test', () => {
   test('user::fail user data not found', () => {
     getDataStub.returns(undefined);
     const username: string = 'test_username';
-    const message: Message = getMessage(username)
+    const message: Message = getMessage(username);
 
     new UserDataCommand(instance(mockBot)).execute(message);
 

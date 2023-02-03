@@ -71,4 +71,4 @@ export const removeUserData = (username: string): boolean => {
     return overrideUserFile(users);
   }
   return false;
-}
+};

@@ -24,7 +24,7 @@ describe('remove command test', () => {
       city: 'Kyiv',
       coordinates: { lat: 0, lng: 0 },
       proximityThreshold: 500,
-    }
+    };
     overrideUserFileStub.returns(true);
     stubGetData.onFirstCall().returns(userData);
 
@@ -40,7 +40,7 @@ describe('remove command test', () => {
       city: 'Kyiv',
       coordinates: { lat: 0, lng: 0 },
       proximityThreshold: 500,
-    }
+    };
     overrideUserFileStub.returns(false);
     stubGetData.onFirstCall().returns(userData);
 

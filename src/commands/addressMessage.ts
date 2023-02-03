@@ -23,14 +23,14 @@ export class AddressMessageCommand extends ParentCommand {
   async execute(message: TelegramBot.Message): Promise<void> {
     const text: string | undefined = message.photo || message.video ? message.caption : message.text;
     if (!text) {
-      logger.debug({message: 'Text is empty, skipping this message.'});
+      logger.debug({ message: 'Text is empty, skipping this message.' });
       return;
     }
     if (text.startsWith('/')) {
       return;
     }
     const enrichedText = `${getUserData(message.from?.username || '')?.city || ''} ${text}`;
-    logger.debug({message: 'Enriched text value for an address search.', enrichedText});
+    logger.debug({ message: 'Enriched text value for an address search.', enrichedText });
     const coordinateData: CoordinateResponse = await getCoordinateData(enrichedText, this.googleMapsToken);
     this.defineLocation(message, coordinateData);
   }
@@ -55,7 +55,7 @@ export class AddressMessageCommand extends ParentCommand {
     const username = message.from?.username || '';
     const user = getUserData(username);
     if (!user) {
-      logger.debug({message: 'User\'s location is absent. Skipping the alert.'});
+      logger.debug({ message: 'User\'s location is absent. Skipping the alert.' });
       return;
     }
     logger.debug({

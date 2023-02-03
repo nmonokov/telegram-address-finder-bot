@@ -24,7 +24,7 @@ WebHookServer.Builder
   .token(BOT_TOKEN)
   .bot(bot)
   .build()
-.start();
+  .start();
 
 /** Handling bot commands */
 

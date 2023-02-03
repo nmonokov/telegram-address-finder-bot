@@ -8,7 +8,7 @@ describe('coordinates test', () => {
 
   afterAll(() => {
     getStub.reset();
-  })
+  });
 
   test('getCoordinateData::successful', async () => {
     const googleMapToken = 'token';

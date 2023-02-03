@@ -9,8 +9,8 @@ import { logger } from './utils/logger';
  * GET /health - is a simple health check
  */
 export class WebHookServer {
-  readonly url: string
-  readonly port: number
+  readonly url: string;
+  readonly port: number;
   readonly token: string;
   readonly bot: TelegramBot;
   readonly app: Express;
@@ -39,12 +39,12 @@ export class WebHookServer {
     });
     this.app.get('/health', (request, response) => {
       response.sendStatus(200);
-    })
+    });
   }
 
   private registerWebHook(): void {
-    const telegramApiUrl = `https://api.telegram.org/bot${this.token}`
-    const webHookUrl = `${telegramApiUrl}/setWebhook?url=${this.url}/bot${this.token}&drop_pending_updates=false`
+    const telegramApiUrl = `https://api.telegram.org/bot${this.token}`;
+    const webHookUrl = `${telegramApiUrl}/setWebhook?url=${this.url}/bot${this.token}&drop_pending_updates=false`;
     this.bot.setWebHook(webHookUrl);
   }
 
@@ -77,5 +77,5 @@ export class WebHookServer {
     static build() {
       return new WebHookServer(this._url, this._port, this._token, this._bot);
     }
-  }
+  };
 }

@@ -26,8 +26,8 @@ export class UserDataCommand extends ParentCommand {
       `city: <code>${user.city}</code>\n` +
       `threshold: <code>${user.proximityThreshold} meters</code>\n`,
       {
-      parse_mode: 'HTML',
+        parse_mode: 'HTML',
       });
-    this.bot.sendLocation(chatId, user.coordinates.lat, user.coordinates.lng)
+    this.bot.sendLocation(chatId, user.coordinates.lat, user.coordinates.lng);
   }
 }

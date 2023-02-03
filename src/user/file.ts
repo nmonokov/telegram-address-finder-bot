@@ -15,9 +15,9 @@ export const readUserFile = (): string[][] => {
     const fileLines: string[] = file.split('\n');
     if (fileLines.length > 0 && fileLines[1]) {
       const entryPluralForm = fileLines.length > 1 ? 'entries' : 'entry';
-      logger.info({ message : `Loading ${fileLines.length} user ${entryPluralForm}.`});
+      logger.info({ message: `Loading ${fileLines.length} user ${entryPluralForm}.` });
     }
-    return fileLines.map((line: string) => line.split('|'))
+    return fileLines.map((line: string) => line.split('|'));
   } catch (error) {
     logger.error({ message: 'Failed to load users from the file.', error });
     return [];
@@ -32,7 +32,7 @@ const createFileIfNotExists = (): void => {
       usersFilePath,
     });
     fs.mkdirSync(usersFolderPath);
-    fs.writeFileSync(usersFilePath, "");
+    fs.writeFileSync(usersFilePath, '');
   }
 };
 
@@ -74,7 +74,7 @@ export const overrideUserFile = (users: { [username: string]: UserData }): boole
     logger.error({ message: 'Failed to override user data file.' });
     return false;
   }
-}
+};
 
 const mapUser = (username: string, user: UserData): string =>
   `${username}|${user.coordinates.lat}|${user.coordinates.lng}|${user.proximityThreshold}|${user.city}`;

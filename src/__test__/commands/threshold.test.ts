@@ -26,7 +26,7 @@ describe('threshold command test', () => {
       city: 'Vancouver',
       coordinates: { lat: 0, lng: 0 },
       proximityThreshold: 500,
-    }
+    };
     persistUserStub.resolves();
     stubGetData.onFirstCall().returns(userData);
     userData.proximityThreshold = 1000;

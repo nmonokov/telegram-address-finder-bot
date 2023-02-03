@@ -12,12 +12,12 @@ export const getMessage = (username?: string, location?: any, text?: string): Me
 
 export const coordinateResponseWithCity = (status?: string): CoordinateResponse => {
   const city: Component = {
-    long_name: "Vancouver",
-    short_name: "Vancouver",
-    types: ["locality", "political"]
-  }
+    long_name: 'Vancouver',
+    short_name: 'Vancouver',
+    types: ['locality', 'political']
+  };
   return coordinateResponse(status, city);
-}
+};
 
 export const coordinateResponse = (status?: string, city?: Component): CoordinateResponse => ({
   results: [
